@@ -6,7 +6,7 @@ function TryOn({ products }) {
   const [selectedGlasses, setSelectedGlasses] = useState("classic");
 
   return (
-    <div className="min-h-screen bg-gray-100 py-8">
+    <div className=" bg-gray-100">
       <div className="container mx-auto px-4">
         {/* <Header /> */}
         <div className="max-w-3xl mx-auto">
@@ -17,7 +17,7 @@ function TryOn({ products }) {
           /> */}
 
           {/* Real-time Camera */}
-          <div className="mt-8">
+          <div className="">
             <Camera glassesType={selectedGlasses} />
           </div>
         </div>

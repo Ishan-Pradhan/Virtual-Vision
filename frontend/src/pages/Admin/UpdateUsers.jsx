@@ -1,478 +1,155 @@
-import { useState, useEffect } from "react";
-import AdminMenu from "../../components/AdminPage/AdminMenu";
-import axios from "axios";
-import Button from "../../components/Button";
-import { toast } from "react-toastify";
 import { useNavigate, useParams } from "react-router-dom";
+import AdminMenu from "../../components/AdminPage/AdminMenu";
 
-function UpdateProduct() {
+import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
+import axios from "axios";
+
+function UpdateUsers() {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [role, setRole] = useState(0);
   const navigate = useNavigate();
-  const { productId } = useParams(); // Get product ID from the URL
-  const [productImg, setProductImg] = useState("");
-  const [productName, setProductName] = useState("");
-  const [description, setDescription] = useState("");
-  const [price, setPrice] = useState("");
-  const [discount, setDiscount] = useState("");
-  const [featured, setFeatured] = useState(false);
-  const [generalCategory, setGeneralCategory] = useState("sunglasses");
-  const [genderCategory, setGenderCategory] = useState("unisex");
-  const [stock, setStock] = useState(1);
-  const [composition, setComposition] = useState("");
-  const [weight, setWeight] = useState("");
-  const [size, setSize] = useState("");
-  const [frameMaterial, setFrameMaterial] = useState("metal");
-  const [lensType, setLensType] = useState("single vision");
-  const [lensColor, setLensColor] = useState("");
-  const [uvProtection, setUvProtection] = useState(false);
-  const [prescriptionReady, setPrescriptionReady] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
 
-  // Fetch the existing product data when the component mounts
+  const { id } = useParams();
+
   useEffect(() => {
-    const fetchProductData = async () => {
+    const fetchUserData = async () => {
       try {
-        const { data } = await axios.get(`/api/v1/product/${productId}`);
-        if (data.success) {
-          const product = data.product;
-          setProductImg(product.productImg);
-          setProductName(product.productName);
-          setDescription(product.description);
-          setPrice(product.price);
-          setDiscount(product.discount);
-          setFeatured(product.featured);
-          setGeneralCategory(product.generalCategory);
-          setGenderCategory(product.genderCategory);
-          setStock(product.stock);
-          setComposition(product.composition);
-          setWeight(product.weight);
-          setSize(product.size);
-          setFrameMaterial(product.frameMaterial);
-          setLensType(product.lensType);
-          setLensColor(product.lensColor);
-          setUvProtection(product.uvProtection);
-          setPrescriptionReady(product.prescriptionReady);
+        const response = await axios.get(
+          `http://localhost:8000/api/v1/auth/users/${id}`
+        );
+
+        if (response.data) {
+          const userData = response.data;
+          setName(userData.name);
+          setEmail(userData.email);
+          setRole(userData.role);
+        } else {
+          throw new Error(response.data.message);
         }
       } catch (error) {
-        toast.error("Failed to fetch product data");
-        console.error("Error fetching product data", error);
+        toast.error(error.message);
+        console.log(error);
       }
     };
-    fetchProductData();
-  }, [productId]);
 
-  // Handle Image Change
-  const handleImageChange = (e) => {
-    setProductImg(e.target.files[0]);
-  };
+    fetchUserData();
+  }, []);
 
-  // Handle Input Changes
-  const handleNameChange = (e) => setProductName(e.target.value);
-  const handleDescriptionChange = (e) => setDescription(e.target.value);
-  const handlePriceChange = (e) => setPrice(e.target.value);
-  const handleDiscountChange = (e) => setDiscount(e.target.value);
-  const handleFeaturedChange = (e) => setFeatured(e.target.checked);
-  const handleGeneralCategoryChange = (e) => setGeneralCategory(e.target.value);
-  const handleGenderCategoryChange = (e) => setGenderCategory(e.target.value);
-  const handleStockChange = (e) => setStock(e.target.value);
-  const handleCompositionChange = (e) => setComposition(e.target.value);
-  const handleWeightChange = (e) => setWeight(e.target.value);
-  const handleSizeChange = (e) => setSize(e.target.value);
-  const handleFrameMaterialChange = (e) => setFrameMaterial(e.target.value);
-  const handleLensTypeChange = (e) => setLensType(e.target.value);
-  const handleLensColorChange = (e) => setLensColor(e.target.value);
-  const handleUvProtectionChange = (e) => setUvProtection(e.target.checked);
-  const handlePrescriptionReadyChange = (e) =>
-    setPrescriptionReady(e.target.checked);
-
-  // Handle Form Submit
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     try {
-      setIsLoading(true);
+      const data = { role };
 
-      const formData = new FormData();
-      formData.append("productImg", productImg);
-      formData.append("productName", productName);
-      formData.append("description", description);
-      formData.append("price", price);
-      formData.append("discount", discount);
-      formData.append("featured", featured);
-      formData.append("generalCategory", generalCategory);
-      formData.append("genderCategory", genderCategory);
-      formData.append("stock", stock);
-      formData.append("composition", composition);
-      formData.append("weight", weight);
-      formData.append("size", size);
-      formData.append("frameMaterial", frameMaterial);
-      formData.append("lensType", lensType);
-      formData.append("lensColor", lensColor);
-      formData.append("uvProtection", uvProtection);
-      formData.append("prescriptionReady", prescriptionReady);
-
-      const { data } = await axios.put(
-        `/api/v1/product/${productId}`,
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
+      const response = await axios.put(
+        `http://localhost:8000/api/v1/auth/users/${id}`,
+        data
       );
-
-      if (data.success) {
-        toast.success("Product updated successfully");
-        navigate("/dashboard/admin/manage-products");
+      console.log(response.data);
+      if (response.data) {
+        toast.success("Users updated sucessfully");
+      } else {
+        throw new Error(data.message);
       }
     } catch (error) {
-      toast.error("Failed to update product");
-      console.error("Error updating product", error);
-    } finally {
-      setIsLoading(false);
+      toast.error(error.message);
+      console.log(error);
+    }
+  };
+
+  const handleDelete = async (e) => {
+    e.preventDefault();
+    try {
+      let answer = window.prompt("Are you sure you want to delete this user?");
+      if (!answer) return;
+
+      const adminname = "admin";
+
+      if (name === adminname) {
+        toast.error("You can't delete this admin");
+        return;
+      }
+
+      const { data } = await axios.delete(
+        `http://localhost:8000/api/v1/auth/users/${id}`
+      );
+      if (data.success) {
+        toast.success("User deleted successfully");
+        console.log("Navigating");
+        navigate("/dashboard/admin/users");
+      } else {
+        throw new Error(data.message);
+      }
+    } catch (error) {
+      toast.error("Error Deleting the user");
     }
   };
 
   return (
     <>
-      <section className="container flex justify-start items-start gap-10 mb-10 relative">
+      <section className="container flex justify-start items-start gap-10 mb-10">
         <AdminMenu />
         <div className="mt-10 flex flex-col w-full justify-center items-center">
           <h2 className="text-2xl uppercase font-head font-bold mb-1 text-center">
-            Update Eyewear Product
+            Manage User
           </h2>
           <form
             onSubmit={handleSubmit}
             encType="multipart/form-data"
-            className="border-2 shadow-lg bg-white p-10 grid grid-cols-1 gap-4 relative mt-5"
+            className="border-2 shadow-lg w-1/2 bg-white p-10 grid grid-cols-1 gap-4 relative mt-5 "
           >
-            {/* Product Image */}
-            <div className="flex gap-10">
-              <label
-                className="text-[#111] font-head font-semibold"
-                htmlFor="productImg"
-              >
-                Product Image
+            <div className="flex flex-col gap-2 mb-2">
+              <label htmlFor="name" className="font-semibold">
+                Name
               </label>
               <input
-                className="col-span-2"
-                type="file"
-                id="productImg"
-                accept="image/*"
-                onChange={handleImageChange}
-              />
-            </div>
-
-            {/* Product Name */}
-            <div className="flex flex-col mb-2 gap-2">
-              <label
-                className="text-[#111] font-head font-semibold"
-                htmlFor="productName"
-              >
-                Product Name
-              </label>
-              <input
-                className="border border-[#888] col-span-2 px-2 py-1"
                 type="text"
-                id="productName"
-                value={productName}
-                onChange={handleNameChange}
-                required
+                value={name}
+                className="border border-[#888] py-1 px-2"
+                disabled
               />
             </div>
-
-            {/* Description */}
-            <div className="flex flex-col mb-2 gap-2">
-              <label
-                className="text-[#111] font-head font-semibold"
-                htmlFor="description"
-              >
-                Description
-              </label>
-              <textarea
-                className="border border-[#888] col-span-2 px-2 py-1"
-                rows="6"
-                id="description"
-                value={description}
-                onChange={handleDescriptionChange}
-                required
-              ></textarea>
-            </div>
-
-            {/* Price */}
-            <div className="flex flex-col mb-2 gap-2">
-              <label
-                className="text-[#111] font-head font-semibold"
-                htmlFor="price"
-              >
-                Price
+            <div className="flex flex-col gap-2 mb-2">
+              <label htmlFor="name" className="font-semibold">
+                Email
               </label>
               <input
-                className="border border-[#888] col-span-2 px-2 py-1"
-                type="number"
-                id="price"
-                value={price}
-                onChange={handlePriceChange}
-                required
+                type="text"
+                value={email}
+                className="border border-[#888] py-1 px-2"
+                disabled
               />
             </div>
-
-            {/* Discount */}
-            <div className="flex flex-col mb-2 gap-2">
-              <label
-                className="text-[#111] font-head font-semibold"
-                htmlFor="discount"
-              >
-                Discount (%) (Optional)
-              </label>
-              <input
-                className="border border-[#888] col-span-2 px-2 py-1"
-                type="number"
-                id="discount"
-                value={discount}
-                onChange={handleDiscountChange}
-                min="0"
-                max="100"
-              />
-            </div>
-
-            {/* Featured Checkbox */}
-            <div className="flex gap-10">
-              <label
-                className="text-[#111] font-head font-semibold"
-                htmlFor="featured"
-              >
-                Featured
-              </label>
-              <div className="col-span-2 px-2 flex gap-3">
-                <input
-                  type="checkbox"
-                  id="featured"
-                  checked={featured}
-                  onChange={handleFeaturedChange}
-                />
-                <p>Click to feature this product on the homepage</p>
-              </div>
-            </div>
-
-            {/* General Category */}
-            <div className="flex flex-col mb-2 gap-2">
-              <label
-                className="text-[#111] font-head font-semibold"
-                htmlFor="generalCategory"
-              >
-                General Category
+            <div className="flex flex-col gap-2 mb-2">
+              <label htmlFor="featured" className="font-semibold">
+                Set as Admin
               </label>
               <select
-                className="border border-[#888] px-3 py-1 col-span-2"
-                id="generalCategory"
-                value={generalCategory}
-                onChange={handleGeneralCategoryChange}
-                required
+                name=""
+                className="border border-[#888] py-1 px-2"
+                id="featured"
+                value={role}
+                onChange={(e) => setRole(e.target.value)}
               >
-                <option value="sunglasses">Sunglasses</option>
-                <option value="prescription glasses">
-                  Prescription Glasses
-                </option>
-                <option value="reading glasses">Reading Glasses</option>
-                <option value="sports eyewear">Sports Eyewear</option>
+                <option value="1">Yes</option>
+                <option value="0">No</option>
               </select>
             </div>
-
-            {/* Gender Category */}
-            <div className="flex flex-col mb-2 gap-2">
-              <label
-                className="text-[#111] font-head font-semibold"
-                htmlFor="genderCategory"
+            <div className="flex justify-between">
+              <button
+                className="bg-red-300 group text-red-700 font-semibold py-2 px-6 text-md  transition-all duration-300 ease-in hover:bg-red-600 hover:text-background hover:ease-in-out md:w-auto flex gap-3 items-center"
+                onClick={handleDelete}
               >
-                Gender Category
-              </label>
-              <select
-                className="border border-[#888] px-3 py-1 col-span-2"
-                id="genderCategory"
-                value={genderCategory}
-                onChange={handleGenderCategoryChange}
-                required
+                Delete
+                <i className="fa-solid fa-trash text-red-700 transition group:duration-300 ease-in group-hover:text-background"></i>
+              </button>
+              <button
+                className="bg-secondary text-background font-semibold py-2 px-3 text-md   transition delay-50 ease-in hover:bg-secondaryTint hover:text-text hover:ease-in-out md:w-auto flex gap-3 items-center"
+                onClick={handleSubmit}
               >
-                <option value="men">Men</option>
-                <option value="women">Women</option>
-                <option value="unisex">Unisex</option>
-              </select>
-            </div>
-
-            {/* Stock */}
-            <div className="flex flex-col mb-2 gap-2">
-              <label
-                className="text-[#111] font-head font-semibold"
-                htmlFor="stock"
-              >
-                Stock
-              </label>
-              <input
-                className="border border-[#888] col-span-2 px-2 py-1"
-                type="number"
-                id="stock"
-                value={stock}
-                onChange={handleStockChange}
-                min="1"
-                required
-              />
-            </div>
-
-            {/* Composition */}
-            <div className="flex flex-col mb-2 gap-2">
-              <label
-                className="text-[#111] font-head font-semibold"
-                htmlFor="composition"
-              >
-                Composition
-              </label>
-              <input
-                className="border border-[#888] col-span-2 px-2 py-1"
-                type="text"
-                id="composition"
-                value={composition}
-                onChange={handleCompositionChange}
-                required
-              />
-            </div>
-
-            {/* Weight */}
-            <div className="flex flex-col mb-2 gap-2">
-              <label
-                className="text-[#111] font-head font-semibold"
-                htmlFor="weight"
-              >
-                Weight
-              </label>
-              <input
-                className="border border-[#888] col-span-2 px-2 py-1"
-                type="text"
-                id="weight"
-                value={weight}
-                onChange={handleWeightChange}
-                required
-              />
-            </div>
-
-            {/* Size */}
-            <div className="flex flex-col mb-2 gap-2">
-              <label
-                className="text-[#111] font-head font-semibold"
-                htmlFor="size"
-              >
-                Size
-              </label>
-              <input
-                className="border border-[#888] col-span-2 px-2 py-1"
-                type="text"
-                id="size"
-                value={size}
-                onChange={handleSizeChange}
-                required
-              />
-            </div>
-
-            {/* Frame Material */}
-            <div className="flex flex-col mb-2 gap-2">
-              <label
-                className="text-[#111] font-head font-semibold"
-                htmlFor="frameMaterial"
-              >
-                Frame Material
-              </label>
-              <select
-                className="border border-[#888] px-3 py-1 col-span-2"
-                id="frameMaterial"
-                value={frameMaterial}
-                onChange={handleFrameMaterialChange}
-                required
-              >
-                <option value="metal">Metal</option>
-                <option value="plastic">Plastic</option>
-                <option value="wood">Wood</option>
-                <option value="acetate">Acetate</option>
-              </select>
-            </div>
-
-            {/* Lens Type */}
-            <div className="flex flex-col mb-2 gap-2">
-              <label
-                className="text-[#111] font-head font-semibold"
-                htmlFor="lensType"
-              >
-                Lens Type
-              </label>
-              <select
-                className="border border-[#888] px-3 py-1 col-span-2"
-                id="lensType"
-                value={lensType}
-                onChange={handleLensTypeChange}
-                required
-              >
-                <option value="single vision">Single Vision</option>
-                <option value="bifocal">Bifocal</option>
-                <option value="progressive">Progressive</option>
-                <option value="blue light blocking">Blue Light Blocking</option>
-              </select>
-            </div>
-
-            {/* Lens Color */}
-            <div className="flex flex-col mb-2 gap-2">
-              <label
-                className="text-[#111] font-head font-semibold"
-                htmlFor="lensColor"
-              >
-                Lens Color (Optional)
-              </label>
-              <input
-                className="border border-[#888] col-span-2 px-2 py-1"
-                type="text"
-                id="lensColor"
-                value={lensColor}
-                onChange={handleLensColorChange}
-              />
-            </div>
-
-            {/* UV Protection */}
-            <div className="flex gap-10">
-              <label
-                className="text-[#111] font-head font-semibold"
-                htmlFor="uvProtection"
-              >
-                UV Protection
-              </label>
-              <div className="col-span-2 px-2 flex gap-3">
-                <input
-                  type="checkbox"
-                  id="uvProtection"
-                  checked={uvProtection}
-                  onChange={handleUvProtectionChange}
-                />
-                <p>Check if UV protection is included in the lenses</p>
-              </div>
-            </div>
-
-            {/* Prescription Ready */}
-            <div className="flex gap-10">
-              <label
-                className="text-[#111] font-head font-semibold"
-                htmlFor="prescriptionReady"
-              >
-                Prescription Ready
-              </label>
-              <div className="col-span-2 px-2 flex gap-3">
-                <input
-                  type="checkbox"
-                  id="prescriptionReady"
-                  checked={prescriptionReady}
-                  onChange={handlePrescriptionReadyChange}
-                />
-                <p>Check if the glasses are prescription ready</p>
-              </div>
-            </div>
-
-            <div className="flex justify-end h-10">
-              <Button disabled={isLoading}>Update Product</Button>
+                Update User
+              </button>
             </div>
           </form>
         </div>
@@ -481,4 +158,4 @@ function UpdateProduct() {
   );
 }
 
-export default UpdateProduct;
+export default UpdateUsers;

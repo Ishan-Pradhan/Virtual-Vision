@@ -168,7 +168,7 @@ function Header() {
                 Shop
               </NavLink>
               <NavLink
-                to="/TryOn"
+                to="/TryOnNav"
                 className={({ isActive }) =>
                   isActive
                     ? "text-primary transition delay-50 hover:ease-in uppercase"

@@ -79,7 +79,7 @@ function SingleProducts() {
                   className="w-[500px] md:h-[500px] object-contain "
                 />
               ) : (
-                <div className="w-[500px] h-[500px] bg-black">
+                <div className="w-[400px] h-[400px]">
                   <TryOn products={{ products }} />
                 </div>
               )}

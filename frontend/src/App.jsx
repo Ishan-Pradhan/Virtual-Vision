@@ -36,6 +36,7 @@ import BestsellersPage from "./pages/BestsellersPage";
 import AdminOrdersDetail from "./pages/Admin/AdminOrdersDetail";
 
 import TryOn from "./pages/TryOn";
+import TryOnNav from "./pages/TryOnNav";
 
 function App() {
   useEffect(() => {
@@ -92,6 +93,7 @@ function App() {
         <Route path="/Cart" element={<Cart />}></Route>
         <Route path="/SingleProducts/:id" element={<SingleProducts />}></Route>
         <Route path="/TryOn" element={<TryOn />}></Route>
+        <Route path="/TryOnNav" element={<TryOnNav />}></Route>
       </Routes>
     </BrowserRouter>
   );

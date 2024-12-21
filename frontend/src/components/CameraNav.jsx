@@ -1,8 +1,8 @@
 import { useRef, useState, useEffect } from "react";
 import { detectFaceLandmarks } from "../utils/faceLandmarkDetector";
-import { GlassesOverlay } from "./GlassesOverlay";
+import { GlassOverlayNav } from "./GlassOverlayNav";
 
-export function Camera({ glassesType }) {
+export function CameraNav({ glassesType }) {
   const videoRef = useRef(null);
   const [landmarks, setLandmarks] = useState(null);
 
@@ -30,7 +30,12 @@ export function Camera({ glassesType }) {
     };
 
     const onResults = (results) => {
-      if (results.multiFaceLandmarks && results.multiFaceLandmarks.length > 0) {
+      if (
+        results &&
+        results.multiFaceLandmarks &&
+        results.multiFaceLandmarks.length > 0
+      ) {
+        console.log("Detected landmarks:", results.multiFaceLandmarks[0]);
         setLandmarks(results.multiFaceLandmarks[0]);
       } else {
         setLandmarks(null);
@@ -40,14 +45,13 @@ export function Camera({ glassesType }) {
     startCamera();
     detectFaceLandmarks(videoRef, onResults);
 
-    // Cleanup function to stop the camera
     return () => {
       stopCamera();
     };
   }, []);
 
   return (
-    <div className="h-full flex flex-col justify-center items-center gap-4">
+    <div className="h-[500px] w-[500px] flex flex-col justify-center items-center gap-4">
       <div className="relative">
         <video
           ref={videoRef}
@@ -56,11 +60,13 @@ export function Camera({ glassesType }) {
           playsInline
           muted
         />
-        <GlassesOverlay
-          videoRef={videoRef}
-          landmarks={landmarks}
-          glassesType={glassesType}
-        />
+        {landmarks && (
+          <GlassOverlayNav
+            videoRef={videoRef}
+            landmarks={landmarks}
+            glassesType={glassesType}
+          />
+        )}
       </div>
     </div>
   );
