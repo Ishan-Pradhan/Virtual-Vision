@@ -1,0 +1,85 @@
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=Mulish:wght@400;500;600;700;800&display=swap");
+/* YourFontAwesomeStyles.module.css */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "mulish";
+  color: #373a58;
+}
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #ddd;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #d3a8ae;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #b76e79;
+}
+
+body {
+  background-color: #f7f7f7;
+}
+
+.modal-content {
+  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.modal-content.hidden {
+  opacity: 0;
+  transform: translateY(-20px);
+}
+
+.mobile-menu {
+  opacity: 0;
+  animation: mobileheaderanimation 0.2s ease-in forwards;
+}
+
+.stickyheader {
+  opacity: 0;
+  animation: headeranimation 0.2s ease-in forwards;
+}
+
+@keyframes mobileheaderanimation {
+  0% {
+    opacity: 0;
+    transform: translateX(-100px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes headeranimation {
+  0% {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.tippy-box {
+  background-color: #171e33;
+  color: black;
+  border: 1px solid #ededed;
+  border-radius: 0;
+}
