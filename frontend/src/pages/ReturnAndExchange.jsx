@@ -57,7 +57,7 @@ const ReturnAndExchangePage = () => {
             <p className="text-gray-700">
               If you have any questions or concerns about our return and
               exchange policy, please contact our customer support team at{" "}
-              <span className="text-primary">glassco@gmail.com</span>.
+              <span className="text-primary">virtualvision@gmail.com</span>.
             </p>
           </div>
         </div>

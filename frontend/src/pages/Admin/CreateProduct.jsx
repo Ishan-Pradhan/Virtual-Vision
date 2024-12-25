@@ -15,6 +15,7 @@ function CreateProduct() {
   const [featured, setFeatured] = useState(false);
   const [generalCategory, setGeneralCategory] = useState("sunglasses");
   const [genderCategory, setGenderCategory] = useState("unisex");
+  const [faceCategory, setFaceCategory] = useState("oval");
   const [stock, setStock] = useState(1);
   const [composition, setComposition] = useState("");
   const [weight, setWeight] = useState("");
@@ -38,6 +39,7 @@ function CreateProduct() {
   const handleDiscountChange = (e) => setDiscount(e.target.value);
   const handleFeaturedChange = (e) => setFeatured(e.target.checked);
   const handleGeneralCategoryChange = (e) => setGeneralCategory(e.target.value);
+  const handleFaceCategoryChange = (e) => setFaceCategory(e.target.value);
   const handleGenderCategoryChange = (e) => setGenderCategory(e.target.value);
   const handleStockChange = (e) => setStock(e.target.value);
   const handleCompositionChange = (e) => setComposition(e.target.value);
@@ -66,6 +68,7 @@ function CreateProduct() {
       formData.append("featured", featured);
       formData.append("generalCategory", generalCategory);
       formData.append("genderCategory", genderCategory);
+      formData.append("faceCategory", faceCategory);
       formData.append("stock", stock);
       formData.append("composition", composition);
       formData.append("weight", weight);
@@ -92,6 +95,7 @@ function CreateProduct() {
         setFeatured(false);
         setGeneralCategory("sunglasses");
         setGenderCategory("unisex");
+        setFaceCategory("oval");
         setStock(1);
         setComposition("");
         setWeight("");
@@ -250,10 +254,35 @@ function CreateProduct() {
                 onChange={handleGeneralCategoryChange}
                 required
               >
-                <option value="sunglasses">Oval</option>
-                <option value="prescription glasses">Triangle </option>
-                <option value="reading glasses">Heart</option>
-                <option value="sports eyewear">Round</option>
+                <option value="sunglasses">sunglasses</option>
+                <option value="prescription glasses">
+                  prescription glasses{" "}
+                </option>
+                <option value="reading glasses">reading glasses</option>
+                <option value="sports eyewear">sports eyewear</option>
+              </select>
+            </div>
+            {/* Face Category */}
+            <div className="flex flex-col mb-2 gap-2">
+              <label
+                className="text-[#111] font-head font-semibold"
+                htmlFor="FaceCategory"
+              >
+                Face Category
+              </label>
+              <select
+                className="border border-[#888] px-3 py-1 col-span-2"
+                id="faceCategory"
+                value={faceCategory}
+                onChange={handleFaceCategoryChange}
+                required
+              >
+                <option value="oval">Oval</option>
+                <option value="round">Round</option>
+                <option value="square">Square</option>
+                <option value="heart-shaped">Heart-Shaped</option>
+                <option value="diamond">Diamond</option>
+                <option value="triangle">Triangle</option>
               </select>
             </div>
 

@@ -150,35 +150,45 @@ function Header() {
               </div>
             </div>
           )}
-          <div className="logoandlinks flex gap-4">
-            <div className="z-30">
-              <Logo />
-            </div>
 
-            <div className="hidden items-center  font-bold  gap-5 text-text md:flex">
-              <NavLink
-                to="/MenProduct"
-                className={({ isActive }) =>
-                  isActive
-                    ? "text-primary transition delay-50 hover:ease-in"
-                    : "transition text-text delay-50 hover:text-primary hover:ease-in"
-                }
-                onClick={scrollToTop}
-              >
-                Shop
-              </NavLink>
-              <NavLink
-                to="/TryOnNav"
-                className={({ isActive }) =>
-                  isActive
-                    ? "text-primary transition delay-50 hover:ease-in uppercase"
-                    : "transition text-text delay-50 hover:text-primary hover:ease-in uppercase"
-                }
-                onClick={scrollToTop}
-              >
-                Try it on
-              </NavLink>
-            </div>
+          <div className="z-30">
+            <Logo />
+          </div>
+
+          <div className="hidden justify-center items-center  font-bold  gap-5 text-text md:flex">
+            <NavLink
+              to="/"
+              className={({ isActive }) =>
+                isActive
+                  ? "text-primary transition delay-50 hover:ease-in"
+                  : "transition text-text delay-50 hover:text-primary hover:ease-in"
+              }
+              onClick={scrollToTop}
+            >
+              Home
+            </NavLink>
+            <NavLink
+              to="/MenProduct"
+              className={({ isActive }) =>
+                isActive
+                  ? "text-primary transition delay-50 hover:ease-in"
+                  : "transition text-text delay-50 hover:text-primary hover:ease-in"
+              }
+              onClick={scrollToTop}
+            >
+              Shop
+            </NavLink>
+            <NavLink
+              to="/TryOnNav"
+              className={({ isActive }) =>
+                isActive
+                  ? "text-primary transition delay-50 hover:ease-in "
+                  : "transition text-text delay-50 hover:text-primary hover:ease-in normal-case"
+              }
+              onClick={scrollToTop}
+            >
+              Try it on
+            </NavLink>
           </div>
 
           <div className="flex items-center md:gap-5">

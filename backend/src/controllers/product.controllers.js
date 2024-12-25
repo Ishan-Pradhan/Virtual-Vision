@@ -21,6 +21,7 @@ const createProduct = async (req, res) => {
       lensColor,
       uvProtection,
       prescriptionReady,
+      faceCategory, // Added field
     } = req.body;
 
     console.log(productName, description, weight, stock);
@@ -30,9 +31,10 @@ const createProduct = async (req, res) => {
       return res.status(400).send({ message: "Product with same name exists" });
     }
 
-    const productImgLocalPath = req.files?.productImg[0]?.path;
-    if (!productImgLocalPath)
+    const productImgLocalPath = req.files?.productImg?.[0]?.path;
+    if (!productImgLocalPath) {
       return res.status(400).send({ message: "Product image is required" });
+    }
 
     const productImg = await uploadOnCloudinary(productImgLocalPath);
 
@@ -54,6 +56,7 @@ const createProduct = async (req, res) => {
       lensColor,
       uvProtection,
       prescriptionReady,
+      faceCategory, // Added field
     });
 
     res.status(200).send({
@@ -127,6 +130,7 @@ const updateProduct = async (req, res) => {
       lensColor,
       uvProtection,
       prescriptionReady,
+      faceCategory, // Added field
     } = req.body;
 
     const existingProduct = await Product.findById(req.params.id);
@@ -161,6 +165,7 @@ const updateProduct = async (req, res) => {
     existingProduct.lensColor = lensColor;
     existingProduct.uvProtection = uvProtection;
     existingProduct.prescriptionReady = prescriptionReady;
+    existingProduct.faceCategory = faceCategory; // Added field
 
     const updatedProduct = await existingProduct.save();
 

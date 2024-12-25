@@ -29,7 +29,7 @@ function FilterSection() {
                 name="generalCategory"
                 value={curEl}
                 onClick={updateFilterValue}
-                className={`font-bold ${
+                className={`font-bold capitalize ${
                   generalCategory === curEl ? "text-primary" : ""
                 }`}
               >

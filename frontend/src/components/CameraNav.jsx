@@ -5,6 +5,7 @@ import { GlassOverlayNav } from "./GlassOverlayNav";
 export function CameraNav({ glassesType }) {
   const videoRef = useRef(null);
   const [landmarks, setLandmarks] = useState(null);
+  const [noFaceDetected, setNoFaceDetected] = useState(false); // State for error handling
 
   useEffect(() => {
     let mediaStream = null;
@@ -35,10 +36,11 @@ export function CameraNav({ glassesType }) {
         results.multiFaceLandmarks &&
         results.multiFaceLandmarks.length > 0
       ) {
-        console.log("Detected landmarks:", results.multiFaceLandmarks[0]);
         setLandmarks(results.multiFaceLandmarks[0]);
+        setNoFaceDetected(false); // Reset error when face is detected
       } else {
         setLandmarks(null);
+        setNoFaceDetected(true); // Show error if no face is detected
       }
     };
 
@@ -51,7 +53,7 @@ export function CameraNav({ glassesType }) {
   }, []);
 
   return (
-    <div className="h-[500px] w-[500px] flex flex-col justify-center items-center gap-4">
+    <div className="flex flex-col justify-center items-center gap-4">
       <div className="relative">
         <video
           ref={videoRef}
@@ -68,6 +70,13 @@ export function CameraNav({ glassesType }) {
           />
         )}
       </div>
+
+      {/* Error message when no face is detected */}
+      {noFaceDetected && (
+        <div className="mt-4 text-red-500 font-semibold">
+          No face detected. Please make sure your face is visible.
+        </div>
+      )}
     </div>
   );
 }

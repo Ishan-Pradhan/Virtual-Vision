@@ -165,7 +165,7 @@ const ContactUsPage = () => {
               </div>
               <div className="flex gap-3 items-center">
                 <i className="fa-solid fa-envelope text-2xl text-secondary"></i>
-                <span className="text-text">glassco@gmail.com</span>
+                <span className="text-text">virtualvision@gmail.com</span>
               </div>
             </div>
           </div>

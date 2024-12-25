@@ -17,6 +17,8 @@ function UpdateProducts() {
   const [discount, setDiscount] = useState("");
   const [featured, setFeatured] = useState(false);
   const [generalCategory, setGeneralCategory] = useState("");
+  const [faceCategory, setFaceCategory] = useState("");
+
   const [genderCategory, setGenderCategory] = useState("");
   const [stock, setStock] = useState();
   const [composition, setComposition] = useState("");
@@ -42,6 +44,7 @@ function UpdateProducts() {
       setDiscount(singleProduct.discount || "");
       setFeatured(singleProduct.featured || false);
       setGeneralCategory(singleProduct.generalCategory || "");
+      setFaceCategory(singleProduct.faceCategory || "");
       setGenderCategory(singleProduct.genderCategory || "");
       setStock(singleProduct.stock);
       setComposition(singleProduct.composition || "");
@@ -88,6 +91,10 @@ function UpdateProducts() {
 
   const handleGeneralCategoryChange = (e) => {
     setGeneralCategory(e.target.value);
+  };
+
+  const handleFaceCategoryChange = (e) => {
+    setFaceCategory(e.target.value);
   };
 
   const handleGenderCategoryChange = (e) => {
@@ -150,6 +157,7 @@ function UpdateProducts() {
       formData.append("discount", discount);
       formData.append("featured", featured);
       formData.append("generalCategory", generalCategory);
+      formData.append("faceCategory", faceCategory);
       formData.append("genderCategory", genderCategory);
       formData.append("stock", stock);
       formData.append("composition", composition);
@@ -297,6 +305,26 @@ function UpdateProducts() {
                 <option value="sunglasses">Sunglasses</option>
                 <option value="eyeglasses">Eyeglasses</option>
                 <option value="reading-glasses">Reading Glasses</option>
+              </select>
+            </div>
+
+            {/* Face Category */}
+            <div className="flex flex-col mb-2 gap-2">
+              <label className="text-[#222]" htmlFor="faceCategory">
+                Face Category:
+              </label>
+              <select
+                className="border border-[#888] px-3 py-1 col-span-2"
+                id="faceCategory"
+                value={faceCategory}
+                onChange={handleFaceCategoryChange}
+              >
+                <option value="oval">Oval</option>
+                <option value="round">Round</option>
+                <option value="square">Square</option>
+                <option value="heart-shaped">Heart-Shaped</option>
+                <option value="diamond">Diamond</option>
+                <option value="triangle">Triangle</option>
               </select>
             </div>
 

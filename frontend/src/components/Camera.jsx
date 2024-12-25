@@ -5,6 +5,7 @@ import { GlassesOverlay } from "./GlassesOverlay";
 export function Camera({ glassesType }) {
   const videoRef = useRef(null);
   const [landmarks, setLandmarks] = useState(null);
+  const [noFaceDetected, setNoFaceDetected] = useState(false); // State for error handling
 
   useEffect(() => {
     let mediaStream = null;
@@ -32,8 +33,10 @@ export function Camera({ glassesType }) {
     const onResults = (results) => {
       if (results.multiFaceLandmarks && results.multiFaceLandmarks.length > 0) {
         setLandmarks(results.multiFaceLandmarks[0]);
+        setNoFaceDetected(false); // Reset error when face is detected
       } else {
         setLandmarks(null);
+        setNoFaceDetected(true); // Show error if no face is detected
       }
     };
 
@@ -62,6 +65,13 @@ export function Camera({ glassesType }) {
           glassesType={glassesType}
         />
       </div>
+
+      {/* Error message when no face is detected */}
+      {noFaceDetected && (
+        <div className="mt-4 text-red-500 font-semibold">
+          No face detected. Please make sure your face is visible.
+        </div>
+      )}
     </div>
   );
 }

@@ -15,7 +15,7 @@ function AboutUs() {
           className="text-2xl md:text-4xl font-bold text-center mb-8"
           data-aos="fade-down"
         >
-          Welcome to Glassco
+          Welcome to Virtual Vision
         </h2>
         {/* Hero Section */}
         <div className="flex flex-col gap-10 md:flex-row items-center">
@@ -30,28 +30,29 @@ function AboutUs() {
           </div>
           <div className="md:w-1/2" data-aos="fade-left">
             <p className="leading-6 mb-4">
-              GlassCo is a family-owned business committed to delivering
+              Virtual Vision is a family-owned business committed to delivering
               high-quality, stylish eyewear while fostering innovation in the
               industry. Established in 1959, our mission is to enhance vision
               and confidence with every pair of glasses.
             </p>
             <p className="leading-6 mb-4">
-              GlassCo was founded in Kathmandu, Nepal, by{" "}
+              Virtual Vision was founded in Kathmandu, Nepal, by{" "}
               <span className="font-semibold">Peter Griffin</span>, the late
               father of our current CEO{" "}
               <span className="font-semibold">Sarah Thompson</span>. Since its
               inception in 1959, the company has been dedicated to crafting
               eyewear that blends functionality with timeless design. Sarah
               inherited her father’s passion for innovation and business acumen,
-              shaping GlassCo into a global brand.
+              shaping Virtual Vision into a global brand.
             </p>
             <p className="leading-6">
               In the 1940s, Peter Griffin was a pioneer in his community,
               recognized as a trailblazer in social entrepreneurship. He laid
               the foundation for Nepal’s earliest social service initiatives,
               including the Paropakar Organisation. Inspired by his vision,
-              GlassCo combines a legacy of craftsmanship with a modern approach
-              to eyewear, empowering individuals worldwide to see and be seen.
+              Virtual Vision combines a legacy of craftsmanship with a modern
+              approach to eyewear, empowering individuals worldwide to see and
+              be seen.
             </p>
           </div>
         </div>
@@ -80,11 +81,11 @@ function AboutUs() {
                 Founder & CEO
               </h4>
               <p className="management-info text-background text-sm">
-                Sarah Thompson, the visionary behind GlassCo, combines her
-                passion for eyewear with a drive to revolutionize the industry.
-                With a background in design and entrepreneurship, Sarah ensures
-                every pair of glasses embodies both style and comfort, catering
-                to diverse customer needs.
+                Sarah Thompson, the visionary behind Virtual Vision, combines
+                her passion for eyewear with a drive to revolutionize the
+                industry. With a background in design and entrepreneurship,
+                Sarah ensures every pair of glasses embodies both style and
+                comfort, catering to diverse customer needs.
               </p>
               <div className="flex gap-4 justify-center items-center mt-4 w-full">
                 <a href="#" className="text-white">
@@ -117,10 +118,10 @@ function AboutUs() {
                 Head Designer
               </h4>
               <p className="management-info text-background text-sm">
-                Michael Reynolds brings a wealth of creativity to GlassCo as the
-                Head Designer. Drawing inspiration from global trends, Michael
-                crafts innovative eyewear that seamlessly blends fashion and
-                functionality, appealing to modern lifestyles.
+                Michael Reynolds brings a wealth of creativity to Virtual Vision
+                as the Head Designer. Drawing inspiration from global trends,
+                Michael crafts innovative eyewear that seamlessly blends fashion
+                and functionality, appealing to modern lifestyles.
               </p>
               <div className="flex gap-4 justify-center items-center mt-4 w-full">
                 <a href="#" className="text-white">
@@ -153,8 +154,8 @@ function AboutUs() {
                 Operations Manager
               </h4>
               <p className="management-info text-background text-sm">
-                Emily Carter ensures the smooth operation of GlassCo's supply
-                chain and customer service. With years of experience in
+                Emily Carter ensures the smooth operation of Virtual Vision's
+                supply chain and customer service. With years of experience in
                 logistics and a focus on excellence, Emily guarantees timely
                 delivery and exceptional quality in every product.
               </p>

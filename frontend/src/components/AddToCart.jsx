@@ -9,7 +9,7 @@ function AddToCart({ product, buttonText, disabled }) {
   const { _id, stock, price } = product;
   return (
     <NavLink
-      to="/Cart"
+      to="#"
       className="w-full"
       onClick={() => addToCart(_id, stock, price, product)}
     >

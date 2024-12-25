@@ -13,7 +13,7 @@ export function GlassOverlayNav({ videoRef, landmarks, glassesType }) {
   useEffect(() => {
     if (glassesType) {
       glassesImg.current.src = glassesType.productImg;
-      console.log("Glasses Image URL:", glassesType.productImg);
+      //   console.log("Glasses Image URL:", glassesType.productImg);
     }
   }, [glassesType]);
 
@@ -49,7 +49,7 @@ export function GlassOverlayNav({ videoRef, landmarks, glassesType }) {
   return (
     <img
       src={glassesImg.current.src}
-      alt="Glasses"
+      alt=""
       className="absolute opacity-80 transform -translate-x-1/2 -translate-y-1/2"
       style={{
         top: glassesPositions.top,

@@ -39,6 +39,7 @@ function SingleProducts() {
     stock,
     weight,
     generalCategory,
+    faceCategory,
     genderCategory,
     frameMaterial,
     lensType,
@@ -155,6 +156,12 @@ function SingleProducts() {
                     <span className="text-gray-500 text-lg">
                       {lensType ? lensType : "NA"}
                     </span>
+                    <span className="text-gray-500 text-lg">
+                      Suitable face:
+                    </span>
+                    <span className="text-gray-500 text-lg">
+                      {faceCategory ? faceCategory : "NA"}
+                    </span>
                   </div>
                 </div>
               </div>
@@ -171,7 +178,7 @@ function SingleProducts() {
               ) : (
                 <div className="w-full flex flex-col gap-4">
                   <button
-                    className={`bg-secondary w-full py-3 px-6 text-md transition delay-50 hover:bg-primaryShadow hover:ease-in-out flex gap-3 justify-center items-center`}
+                    className={`bg-secondary w-full py-3 px-6 text-md transition delay-50 hover:bg-secondaryTint hover:ease-in-out flex gap-3 justify-center items-center`}
                     onClick={() => {
                       handleTryOn();
                     }}

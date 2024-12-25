@@ -1,6 +1,14 @@
 import mongoose, { Schema } from "mongoose";
 
 // Updated categories for eyewear
+const faceCategory = [
+  "oval",
+  "round",
+  "square",
+  "heart-shaped",
+  "diamond",
+  "triangle",
+];
 const generalCategory = [
   "sunglasses",
   "prescription glasses",
@@ -45,7 +53,12 @@ const productSchema = new Schema(
     generalCategory: {
       type: String,
       enum: generalCategory,
-      default: "oval",
+      default: "sunglasses",
+    },
+    faceCategory: {
+      type: String,
+      enum: faceCategory, // Suitable face shapes for the glasses
+      required: true,
     },
     genderCategory: {
       type: String,
