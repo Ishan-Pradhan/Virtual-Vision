@@ -17,14 +17,14 @@ export default {
     },
     extend: {
       colors: {
-        primary: "#B76E79",
-        primaryTint: "#D3A8AE",
-        primaryTint2: "#e2c5c9",
-        primaryShadow: "#a4636c",
-        text: "#373A58",
-        background: "#f7f7f7",
-        secondary: "#20736D",
-        secondaryTint: "#a5c7c4",
+        primary: "#5C9E9E",
+        primaryTint: "#3F91D0",
+        primaryTint2: "#0E4A77",
+        primaryShadow: "#3C75A6",
+        text: "#2A3C3A",
+        background: "#F1F5F4",
+        secondary: "#F1A7A3",
+        secondaryTint: "#F39C12",
       },
       fontFamily: {
         head: ["Raleway"],

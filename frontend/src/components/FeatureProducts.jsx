@@ -81,7 +81,7 @@ function FeatureProducts({ product }) {
       className="w-60"
     >
       <div className="hover:-translate-y-3 transition-transform ease-in duration-200 hover:shadow-lg border">
-        <div className="relative h-60 w-full">
+        <div className="relative h-60 p-2 w-full">
           <img
             src={product.productImg}
             alt=""

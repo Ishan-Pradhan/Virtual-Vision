@@ -203,15 +203,15 @@ function Header() {
                   </button> */}
                 </NavLink>
                 {/* <i className="fa-solid fa-grip-lines-vertical"></i> */}
-                <span className="hidden md:flex font-extrabold">/</span>
+                {/* <span className="hidden md:flex font-extrabold">/</span>
                 <NavLink to={"/Register"} onClick={scrollToTop}>
                   <button className="hidden text-md text-text font-bold  hover:text-primary  cursor-pointer transition delay-50 hover-ease-in md:flex uppercase">
                     Register
-                  </button>
-                  {/* <button className="hidden text-lg text-text font-semibold py-1 px-3 ring-2 ring-secondary ring-inset  hover:bg-secondaryTint  cursor-pointer transition delay-50 hover-ease-in md:flex">
+                  </button> */}
+                {/* <button className="hidden text-lg text-text font-semibold py-1 px-3 ring-2 ring-secondary ring-inset  hover:bg-secondaryTint  cursor-pointer transition delay-50 hover-ease-in md:flex">
                     Register
                   </button> */}
-                </NavLink>
+                {/* </NavLink> */}
               </div>
             ) : auth.user.role === 0 ? (
               <NavLink to={"/dashboard/user/profile"} onClick={scrollToTop}>
