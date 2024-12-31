@@ -195,7 +195,7 @@ function Header() {
             {!auth.user ? (
               <div className="flex items-center gap-1">
                 <NavLink to={"/Login"} onClick={scrollToTop}>
-                  <button className="hidden text-md  font-bold  text-secondary hover:text-primary  cursor-pointer transition delay-50 hover-ease-in md:flex uppercase">
+                  <button className="hidden text-md  font-bold  text-primary hover:text-primaryTint cursor-pointer transition delay-50 hover-ease-in md:flex uppercase">
                     Login
                   </button>
                   {/* <button className="hidden text-lg  py-1 px-3 font-semibold  bg-secondary text-background hover:bg-primary  cursor-pointer transition delay-50 hover-ease-in md:flex">

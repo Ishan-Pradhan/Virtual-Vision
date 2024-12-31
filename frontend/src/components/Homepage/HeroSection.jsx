@@ -10,18 +10,21 @@ function HeroSection() {
       <div
         className={`h-[85vh] p-10 md:h-[86vh] bg-cover bg-right-top  md:bg-top  flex flex-col justify-center items-start md:p-20 gap-5 mx-auto `}
         style={{
-          backgroundImage: `linear-gradient(to right, rgba(0, 0, 0, 0.35) 50%, rgba(0, 0, 0, 0.0)), url("images/hero1.jpg")`,
+          backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0.35) 50%, rgba(0, 0, 0, 0.0)), url("images/newhero.jpg")`,
         }}
       >
         <div
           className={`container px-5 relative flex flex-col justify-between items-start gap-6 mx-auto  `}
         >
           <div
-            className={`flex flex-col justify-start items-start md:items-start gap-4 w-full`}
+            className={`flex flex-col justify-start items-start md:items-center md:justify-center gap-4 w-full`}
           >
-            <div className="md:w-1/2" data-aos="fade-up">
+            <div
+              className="md:w-3/4 flex justify-center items-center flex-col gap-4 mx-auto"
+              data-aos="fade-up"
+            >
               <h1
-                className="font-head text-4xl md:text-7xl font-semibold text-background my-5 "
+                className="font-head text-4xl md:text-7xl text-center font-semibold text-background my-5 "
                 data-aos="fade-up"
                 data-aos-once="true"
               >
